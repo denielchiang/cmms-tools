@@ -35,6 +35,7 @@ def transform_csv(input_file, output_file):
 
     # Extract data into a dictionary, ensuring each field is correctly assigned
     data_dict = {
+        "編號": df.iloc[0,1],
         "建檔日期": formatted_date,
         "姓名": name,
         "性別": df.iloc[1, 3] if len(df.columns) > 3 and pd.notna(df.iloc[1, 3]) else "未填寫",
@@ -48,7 +49,7 @@ def transform_csv(input_file, output_file):
     }
 
     # Create DataFrame and save
-    output_df = pd.DataFrame([data_dict], columns=["建檔日期", "姓名", "性別", "出生年月日", "手機", "TEL", "市(縣)", "區(市鄉鎮)", "地址", "組別"])
+    output_df = pd.DataFrame([data_dict], columns=["編號","建檔日期", "姓名", "性別", "出生年月日", "手機", "TEL", "市(縣)", "區(市鄉鎮)", "地址", "組別"])
     output_df.to_csv(output_file, index=False, encoding='utf-8-sig')
     print(f"CSV transformed and saved to {output_file}")
 
